@@ -1,0 +1,18 @@
+{% load wagtailimages_tags %}
+
+{% for card in self.cards %}
+<div class="single_propram">
+    <div class="inner_wrap">
+        <div class="circle_img"></div>
+        <div class="porgram_top">
+            <span class="wow fadeInRight" data-wow-duration="1s" data-wow-delay=".3s">{{ card.time }}</span>
+            <h4 class=" wow fadeInUp" data-wow-duration="1s" data-wow-delay=".4s">{{ card.title }}</h4>
+        </div>
+        {% image card.image height-300 as img %}
+        <div class="thumb wow fadeInUp" data-wow-duration="1s" data-wow-delay=".5s">
+            <img src="{{ img.url }}" alt="{{ img.alt }}">
+        </div>
+        <h4 class="wow fadeInUp" data-wow-duration="1s" data-wow-delay=".6s">{{ card.leader }}</h4>
+    </div>
+</div>
+{% endfor %}

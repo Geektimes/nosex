@@ -1,0 +1,176 @@
+{% load static wagtailcore_tags wagtailuserbar %}
+
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>
+            {% block title %}
+            {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}
+            {% endblock %}
+            {% block title_suffix %}
+            {% wagtail_site as current_site %}
+            {% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %}
+            {% endblock %}
+        </title>
+        <meta name="description" content="party вечеринка" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        {# Force all links in the live preview panel to be opened in a new tab #}
+        {% if request.in_preview_panel %}
+        <base target="_blank">
+        {% endif %}
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img/apple-touch-icon.png' %}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img/favicon-32x32.png' %}">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon-16x16.png' %}">
+        <link rel="manifest" href="{% static 'img/site.webmanifest' %}">
+        <link rel="mask-icon" href="{% static 'img/safari-pinned-tab.svg' %}" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+
+        {# Global stylesheets #}     
+        <!-- CSS here -->
+        <link rel="stylesheet" type="text/css"  href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" type="text/css"  href="{% static 'css/owl.carousel.min.css' %}">
+        <link rel="stylesheet" type="text/css"  href="{% static 'css/css/magnific-popup.css' %}">
+        <link rel="stylesheet" type="text/css"  href="{% static 'css/font-awesome.min.css' %}">
+        <link rel="stylesheet" type="text/css"  href="{% static 'css/themify-icons.css' %}">
+        <link rel="stylesheet" type="text/css"  href="{% static 'css/gijgo.css' %}">
+        <link rel="stylesheet" type="text/css"  href="{% static 'css/nice-select.css' %}">
+        <link rel="stylesheet" type="text/css"  href="{% static 'css/animate.css' %}">
+        <link rel="stylesheet" type="text/css"  href="{% static 'css/flaticon.css' %}">
+        <link rel="stylesheet" type="text/css"  href="{% static 'css/slicknav.css' %}">
+        <link rel="stylesheet" type="text/css"  href="{% static 'css/style.css' %}">
+
+        {% block extra_css %}
+        {# Override this in templates to add extra stylesheets #}
+        {% endblock %}
+    </head>
+
+    <body class="{% block body_class %}{% endblock %}">
+        {% wagtailuserbar %}
+        <!-- header-start -->
+        <header>
+            <div class="header-area ">
+                <div id="sticky-header" class="main-header-area">
+                    <div class="container">
+                        <div class="header_bottom_border">
+                            <div class="row align-items-center">
+                                <div class="col-xl-3 col-lg-3">
+                                    <div class="logo">
+                                        <a href="/">
+                                            <img src="{% static 'img/logo.png' %}" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-lg-6">
+                                    <div class="main-menu  d-none d-lg-block">
+                                        <nav>
+                                            <ul id="navigation">                                        
+                                                <li><a href="#performer">Гости</a></li>
+                                                <li><a href="#about">О нас</a></li>
+                                                <li><a href="#shedule">Расписание</a></li>
+                                                <li><a href="#contact">Контакты</a></li>                                        
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 d-none d-lg-block">
+                                    <div class="buy_tkt">
+                                        <div class="book_btn d-none d-lg-block">
+                                            <a href="/form/">Купить билет</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="mobile_menu d-block d-lg-none"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- header-end -->
+        
+
+        {% block content %}
+        {% endblock %}
+
+        <!-- footer_start  -->
+        <footer class="footer">
+            <div class="footer_top">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6 col-md-8">
+                            <div class="footer_widget">
+                                <div  class="address_details text-center">                            
+                                    <a href="#" class="boxed-btn3 wow fadeInUp" data-wow-duration="1s" data-wow-delay=".6s">Купить билет</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copy-right_text">
+                <div class="container">                        
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <p class="maker text-center wow fadeInDown" data-wow-duration="1s" data-wow-delay=".5s">
+        This site is made by Timofey | <a href="https://t.me/Web50000" target="_blank"><i class="fa fa-telegram" aria-hidden="true"></i></a> | <a href="mailto:3dtim@mail.ru"><i class="fa fa-at" aria-hidden="true"></i></a> 
+                            </p>
+                        </div>
+                        <div class="col-xl-12">
+                            <p class="copy_right text-center wow fadeInDown" data-wow-duration="1s" data-wow-delay=".5s">
+        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved
+                            </p>
+                        </div>                
+                    </div>            
+                </div>
+            </div>
+        </footer>
+        <!-- footer_end  -->
+        {% block extra_js %}
+        {# Override this in templates to add extra javascript #}
+        {% endblock %}
+
+        {# Global javascript #}
+        <!-- JS here -->
+        <script type="text/javascript" src="{% static 'js/vendor/modernizr-3.5.0.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+        
+        <script type="text/javascript" src="{% static 'js/gijgo.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/nice-select.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jquery.slicknav.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/wow.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+        <script  type="text/javascript"src="{% static 'js/owl.carousel.min.js' %}"></script>
+
+        <script type="text/javascript" src="{% static 'js/waypoints.min.js' %}"></script> 
+        <script type="text/javascript" src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
+
+        <script type="text/javascript" src="{% static 'js/ajax-form.js' %}"></script>
+        
+        <script type="text/javascript" src="{% static 'js/jquery.counterup.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/scrollIt.js' %}"></script> 
+        <script type="text/javascript" src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+
+        <script type="text/javascript" src="{% static 'js/tilt.jquery.js' %}"></script>
+
+        <script type="text/javascript" src="{% static 'js/plugins.js' %}"></script>
+        
+
+        <!-- MAIN HOME JS -->
+        <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+        <!--contact js-->
+        <script type="text/javascript" src="{% static 'js/contact.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jquery.ajaxchimp.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jquery.form.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jquery.validate.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/mail-script.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/jquery.scrollUp.min.js' %}"></script>
+    </body>
+</html>

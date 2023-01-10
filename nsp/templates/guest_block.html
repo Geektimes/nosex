@@ -1,0 +1,16 @@
+{% load wagtailimages_tags %}
+
+{% for card in self.guests %}
+<div class="col-lg-6 col-md-6">
+    <div  class="single_performer wow fadeInUp" data-wow-duration="1s" data-wow-delay=".3s">
+        {% image card.image height-300 as img %}
+        <div data-tilt class="thumb">
+            <img src="{{ img.url }}" alt="{{ img.alt }}">
+        </div>
+        <div class="performer_heading">
+            <h4>{{ card.name }}</h4>
+            <span>{{ card.prof }}</span>
+        </div>
+    </div>
+</div>
+{% endfor %}

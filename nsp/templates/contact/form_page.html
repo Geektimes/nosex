@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+<div class="slider_area">
+    <div class="single_slider  d-flex align-items-center slider_bg_1 overlay">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-xl-12">
+                   <div>                    
+                        <div>{{ page.intro|richtext }}</div> 
+                        <form action="{% pageurl page %}" method="POST">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <input type="submit">
+                        </form>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
